@@ -18,11 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Start new game"
-        android:textColor="@color/white"
         android:background="#1ACA21"
-        android:textSize="16sp"
+        android:padding="8dp"
+        android:text="Start new game"
         android:textAllCaps="true"
-        android:padding="8dp" />
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
 </LinearLayout>
