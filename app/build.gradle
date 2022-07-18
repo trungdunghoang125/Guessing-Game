@@ -50,4 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     // view model
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+    // live data
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
 }

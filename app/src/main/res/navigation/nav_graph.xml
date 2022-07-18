@@ -26,7 +26,9 @@
             app:argType="string" />
         <action
             android:id="@+id/action_resultFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/resultFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

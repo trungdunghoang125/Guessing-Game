@@ -1,5 +1,7 @@
 package com.trungdunghoang125.guessinggame
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
@@ -15,13 +17,13 @@ class GameViewModel : ViewModel() {
         "Binding"
     )
     val secretWord = words.random().uppercase()
-    var secretWordDisplay = ""
+    private val secretWordDisplay = MutableLiveData<String>()
     var correctGuess = ""
-    var incorrectGuess = ""
-    var livesLeft = 8
+    val incorrectGuess = MutableLiveData<String>("")
+    val livesLeft = MutableLiveData<Int>(8)
 
     init {
-        secretWordDisplay = deriveSecretWordDisplay()
+        secretWordDisplay.value = deriveSecretWordDisplay()
     }
 
     fun deriveSecretWordDisplay(): String {
@@ -43,17 +45,17 @@ class GameViewModel : ViewModel() {
         if (guess.length == 1) {
             if (secretWord.contains(guess)) {
                 correctGuess += guess
-                secretWordDisplay = deriveSecretWordDisplay()
+                secretWordDisplay.value = deriveSecretWordDisplay()
             } else {
-                incorrectGuess += "$guess"
-                livesLeft--
+                incorrectGuess.value += "$guess"
+                livesLeft.value = livesLeft.value?.minus(1)
             }
         }
     }
 
-    fun isWon() = secretWord.equals(secretWordDisplay, true)
+    fun isWon() = secretWord.equals(secretWordDisplay.value, true)
 
-    fun isLost() = (livesLeft <= 0)
+    fun isLost() = livesLeft.value ?: 0 <= 0
 
     fun wonLostMessage(): String {
         var message = ""
